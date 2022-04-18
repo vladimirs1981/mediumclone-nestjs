@@ -7,9 +7,9 @@ import { UserEntity } from "./user.entity";
 @Injectable()
 export class UserService {
   constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {}
-  async createUser(createUserDto: CreateUserDto) {
+  async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     const newUser = new UserEntity();
-    Object.assign(newUser, createUserDto); // assig all properties from createUserDto to newUser
+    Object.assign(newUser, createUserDto); // assign all properties from createUserDto to newUser
     return await this.userRepository.save(newUser);
   }
 }
