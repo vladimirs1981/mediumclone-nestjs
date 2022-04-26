@@ -1,4 +1,4 @@
-import { BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { hash } from "bcrypt";
 import { ArticleEntity } from "../article/article.entity";
 
@@ -30,4 +30,8 @@ export class UserEntity {
   //prva funkcija kaže da user ima više artikla, druga da svaki artikal ima jednog usera (autora)
   @OneToMany(() => ArticleEntity, article => article.author)
   articles: ArticleEntity[];
+
+  @ManyToMany(() => ArticleEntity)
+  @JoinTable()
+  favorites: ArticleEntity[];
 }
