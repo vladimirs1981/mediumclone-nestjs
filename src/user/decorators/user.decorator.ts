@@ -6,7 +6,7 @@ export const User = createParamDecorator((data: any, ctx: ExecutionContext) => {
 
   //if there is no user in the request return null
   if (!request.user) {
-    null;
+    return null;
   }
 
   //there is some value we get from request
